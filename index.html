@@ -17,6 +17,47 @@
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <script src="src/script.js"></script>
+    <div class="container">
+      <div class="app-title">Weathered By Yara</div>
+      <header class="search-form">
+        <form class="search">
+          <input type="text" id="search-input" placeholder="Search Location" />
+          <input type="submit" value="Go" class="submit" />
+        </form>
+        <button>Current Location</button>
+      </header>
+      <header class="background">
+        <div class="big-image">
+          <div class="overlay">
+            <h1 class="main-city">Location</h1>
+            <h2 class="main-country">Country</h2>
+            <h3 id="date-now">Date</h3>
+            <h3 id="time-now">Time</h3>
+            <img class="main-icon" src="images/Rain.png" alt="rain" />
+            <h4>
+              <strong id="temp-now">15</strong>
+              <span class="units">
+                <a href="#" id="celcius" class="active">°C |</a>
+                <a href="#" id="farenheit">°F</a>
+              </span>
+            </h4>
+            <ul>
+              <li>Humidity: 25%</li>
+              <li>Windspeed: 20mph</li>
+              <li>Description</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <small>
+        <a
+          href="https://github.com/shamsayara/Weathered-by-Yara"
+          target="_blank"
+          >Open-source code</a
+        >
+        by Yara Shamsah
+      </small>
+      <script src="src/script.js"></script>
+    </div>
   </body>
 </html>
