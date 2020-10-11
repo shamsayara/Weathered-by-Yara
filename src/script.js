@@ -76,7 +76,6 @@ function showTemp(response) {
   );
 }
 function showForecast(response) {
-  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let forecast = response.data.list[0];
 
@@ -165,19 +164,45 @@ function searchSubmit(event) {
   event.preventDefault();
   let citySearch = document.querySelector("#search-input");
   search(citySearch.value);
-  console.log(citySearch.value);
+  let lati = position.coords.latitude;
+  let long = position.coords.longitude;
+
+  let units = "metric";
+  let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
+  let apiUrl3 = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl3).then(showTemp);
+  let apiUrl4 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lati}&lon=${long}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl4).then(showForecast);
 }
+
+//current position
+function showPosition(position) {
+  let lati = position.coords.latitude;
+  let long = position.coords.longitude;
+
+  let units = "metric";
+  let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
+  let apiUrl3 = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl3).then(showTemp);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
 function showImperial(event) {
   event.preventDefault();
-  let currentTempFar = document.querySelector("#temp-now");
-  let imperialTemp = (currentTempCel * 9) / 5 + 32;
-  currentTempFar.innerHTML = Math.round(imperialTemp);
+  let temperatureElement = document.querySelector("#temp-now");
+  let currentTempFar = (currentTempCel * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(currentTempFar);
 }
+
 function showMetric(event) {
   event.preventDefault();
-  let metricTemp = document.querySelector("#temp-now");
-  metricTemp.innerHTML = Math.round(currentTempCel);
+  let temperatureElement = document.querySelector("#temp-now");
+  temperatureElement.innerHTML = Math.round(currentTempCel);
 }
+
 let currentTempCel = null;
 
 //search engine
@@ -193,3 +218,6 @@ celciusElement = document.querySelector("#celcius");
 celciusElement.addEventListener("click", showMetric);
 
 //currentLocation
+
+let button = document.querySelector("button");
+button.addEventListener("click", getCurrentPosition);
