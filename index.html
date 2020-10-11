@@ -29,10 +29,11 @@
               placeholder="Search Location"
             />
             <input type="submit" value="Go" class="submit" />
+            <button>Current Location</button>
           </form>
-          <button>Current Location</button>
-          <h1 class="main-city">Location</h1>
-          <h2 class="main-country">Country</h2>
+
+          <h1 id="main-city"></h1>
+          <h2 id="main-country"></h2>
           <h3 id="date-now">Date</h3>
           <h3 id="time-now">Time</h3>
           <img class="main-icon" src="images/Rain.png" alt="rain" />
@@ -44,9 +45,9 @@
             </span>
           </h4>
           <ul>
-            <li>Humidity: 25%</li>
-            <li>Windspeed: 20mph</li>
-            <li>Description</li>
+            <li id="humidity">Humidity: 25%</li>
+            <li id="windspeed">Windspeed: 20mph</li>
+            <li id="main-description">Description</li>
           </ul>
           <h5>Next 5 Days</h5>
         </div>

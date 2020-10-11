@@ -39,15 +39,37 @@ function formatHours() {
   }
   return `${hours}:${minutes}`;
 }
-document.querySelector("h3").innerHTML = formatHours();
-//search engine
+document.querySelector("#time-now").innerHTML = formatHours();
+document.querySelector("#date-now").innerHTML = formatDate();
+//Fetching temperatures and location
 
-function showPosition(position) {
-  let lati = position.coords.latitude;
-  let long = position.coords.longitude;
+function showTemp(response) {
+  console.log(response.data);
 
-  let units = "metric";
-  let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lati}&lon=${long}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(showTemp);
+  let currentTemp = document.querySelector("#temp-now");
+  currentTemp.innerHTML = Math.round(response.data.main.temp);
+
+  let currentCity = document.querySelector("#main-city");
+  currentCity.innerHTML = response.data.name;
+
+  let currentCountry = document.querySelector("#main-country");
+  currentCountry.innerHTML = response.data.sys.country;
+
+  let currentDescription = document.querySelector("#main-description");
+  currentDescription.innerHTML = response.data.weather[0].description;
+
+  let currentHumidity = document.querySelector("#humidity");
+  currentHumidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+
+  let currentWind = document.querySelector("#windspeed");
+  currentWind.innerHTML = `Windspeed: ${Math.round(
+    response.data.wind.speed
+  )} Km/H`;
+
+  let currentTime = document.querySelector("#time-now");
+  currentTime.innerHTML = response.data.timezone;
 }
+let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
+let units = "metric";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(showTemp);
