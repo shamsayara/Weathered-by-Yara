@@ -38,7 +38,7 @@ function formatHours(timestamp) {
   }
   return `${hours}:${minutes}`;
 }
-//Fetching temperatures and location
+//Fetching current temperatures and location
 
 function showTemp(response) {
   let currentTemp = document.querySelector("#temp-now");
@@ -73,9 +73,21 @@ function showTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
-let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
-let units = "metric";
-let city = "London";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+function search(city) {
+  let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showTemp);
+}
 
-axios.get(apiUrl).then(showTemp);
+function searchSubmit(event) {
+  event.preventDefault();
+  let citySearch = document.querySelector("#search-input");
+  search(citySearch.value);
+  console.log(citySearch.value);
+}
+
+//search engine
+
+let form = document.querySelector(".search");
+form.addEventListener("submit", searchSubmit);

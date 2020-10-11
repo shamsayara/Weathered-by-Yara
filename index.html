@@ -22,16 +22,24 @@
     <header class="background">
       <div class="big-image">
         <div class="overlay">
-          <form class="search">
-            <input
-              type="text"
-              id="search-input"
-              placeholder="Search Location"
-            />
-            <input type="submit" value="Go" class="submit" />
-            <button>Current Location</button>
-          </form>
-
+          <div class="container">
+            <div class="row">
+              <div class="col-10">
+                <form class="search">
+                  <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search Location"
+                    autocomplete="off"
+                  />
+                  <input type="submit" value="Go" class="submit" />
+                </form>
+                <div class="col-3">
+                  <button>Current Location</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <h1 id="main-city"></h1>
           <h2 id="main-country"></h2>
           <h3 id="date-now">Date</h3>

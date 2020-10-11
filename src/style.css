@@ -23,7 +23,7 @@ strong {
   font-size: 50px;
 }
 button {
-  margin: 20px 0px 0px 30px;
+  margin: 20px 0px 0px 0px;
   padding: 5px 14px;
 }
 
@@ -111,6 +111,6 @@ small {
 }
 
 .units a {
-  color: white;
+  color: salmon;
   font-family: "Roboto", sans-serif;
 }
