@@ -14,20 +14,23 @@
       src="https://kit.fontawesome.com/1f21c8aa66.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
     <div class="app-title">Weathered By Yara</div>
-    <header class="search-form">
-      <form class="search">
-        <input type="text" id="search-input" placeholder="Search Location" />
-        <input type="submit" value="Go" class="submit" />
-      </form>
-      <button>Current Location</button>
-    </header>
     <header class="background">
       <div class="big-image">
         <div class="overlay">
+          <form class="search">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search Location"
+            />
+            <input type="submit" value="Go" class="submit" />
+          </form>
+          <button>Current Location</button>
           <h1 class="main-city">Location</h1>
           <h2 class="main-country">Country</h2>
           <h3 id="date-now">Date</h3>
@@ -45,9 +48,11 @@
             <li>Windspeed: 20mph</li>
             <li>Description</li>
           </ul>
+          <h5>Next 5 Days</h5>
         </div>
       </div>
     </header>
+
     <small>
       <a href="https://github.com/shamsayara/Weathered-by-Yara" target="_blank"
         >Open-source code</a
