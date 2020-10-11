@@ -66,6 +66,12 @@ function showTemp(response) {
 
   let currentTime = document.querySelector("#time-now");
   currentTime.innerHTML = formatHours(response.data.dt * 1000);
+
+  let currentIcon = document.querySelector("#main-icon");
+  currentIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
 let units = "metric";
