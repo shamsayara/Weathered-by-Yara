@@ -41,8 +41,10 @@ function formatHours(timestamp) {
 //Fetching current temperatures and location
 
 function showTemp(response) {
+  currentTempCel = response.data.main.temp;
+
   let currentTemp = document.querySelector("#temp-now");
-  currentTemp.innerHTML = Math.round(response.data.main.temp);
+  currentTemp.innerHTML = Math.round(currentTempCel);
 
   let currentCity = document.querySelector("#main-city");
   currentCity.innerHTML = response.data.name;
@@ -73,11 +75,90 @@ function showTemp(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
 }
+function showForecast(response) {
+  console.log(response.data);
+  let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.list[0];
+
+  //1
+  forecastElement.innerHTML = `
+  <div class="col-2">
+    <h5>
+    ${formatHours(forecast.dt * 1000)}
+    </h5>
+    <img src="http://openweathermap.org/img/wn/${
+      forecast.weather[0].icon
+    }@2x.png" alt=""/>
+    <div class="weather-forecast-temp">
+      ${Math.round(forecast.main.temp)}°C
+    </div>
+  </div>`;
+  //2
+  forecast = response.data.list[1];
+  forecastElement.innerHTML += `
+  <div class="col-2">
+    <h5>
+    ${formatHours(forecast.dt * 1000)}
+    </h5>
+    <img src="http://openweathermap.org/img/wn/${
+      forecast.weather[0].icon
+    }@2x.png" alt=""/>
+    <div class="weather-forecast-temp">
+      ${Math.round(forecast.main.temp)}°C
+    </div>
+  </div>`;
+  //3
+  forecast = response.data.list[2];
+  forecastElement.innerHTML += `
+  <div class="col-2">
+    <h5>
+    ${formatHours(forecast.dt * 1000)}
+    </h5>
+    <img src="http://openweathermap.org/img/wn/${
+      forecast.weather[0].icon
+    }@2x.png" alt=""/>
+    <div class="weather-forecast-temp">
+      ${Math.round(forecast.main.temp)}°C
+    </div>
+  </div>`;
+
+  //4
+  forecast = response.data.list[3];
+  forecastElement.innerHTML += `
+  <div class="col-2">
+    <h5>
+    ${formatHours(forecast.dt * 1000)}
+    </h5>
+    <img src="http://openweathermap.org/img/wn/${
+      forecast.weather[0].icon
+    }@2x.png" alt=""/>
+    <div class="weather-forecast-temp">
+      ${Math.round(forecast.main.temp)}°C
+    </div>
+  </div>`;
+  //5
+  forecast = response.data.list[4];
+  forecastElement.innerHTML += `
+  <div class="col-2">
+    <h5>
+    ${formatHours(forecast.dt * 1000)}
+    </h5>
+    <img src="http://openweathermap.org/img/wn/${
+      forecast.weather[0].icon
+    }@2x.png" alt=""/>
+    <div class="weather-forecast-temp">
+      ${Math.round(forecast.main.temp)}°C
+    </div>
+  </div>`;
+}
+
 function search(city) {
   let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemp);
+  let apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl2).then(showForecast);
 }
 
 function searchSubmit(event) {
@@ -86,8 +167,29 @@ function searchSubmit(event) {
   search(citySearch.value);
   console.log(citySearch.value);
 }
+function showImperial(event) {
+  event.preventDefault();
+  let currentTempFar = document.querySelector("#temp-now");
+  let imperialTemp = (currentTempCel * 9) / 5 + 32;
+  currentTempFar.innerHTML = Math.round(imperialTemp);
+}
+function showMetric(event) {
+  event.preventDefault();
+  let metricTemp = document.querySelector("#temp-now");
+  metricTemp.innerHTML = Math.round(currentTempCel);
+}
+let currentTempCel = null;
 
 //search engine
-
+search("London");
 let form = document.querySelector(".search");
 form.addEventListener("submit", searchSubmit);
+
+//unit conversion from metric to imperial
+fahrenheitElement = document.querySelector("#fahrenheit");
+fahrenheitElement.addEventListener("click", showImperial);
+
+celciusElement = document.querySelector("#celcius");
+celciusElement.addEventListener("click", showMetric);
+
+//currentLocation

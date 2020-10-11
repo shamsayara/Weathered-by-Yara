@@ -13,12 +13,7 @@ h3,
 h4 {
   padding: 0px 0px 10px 0px;
 }
-h5 {
-  color: salmon;
-  text-align: left;
-  padding-left: 30px;
-  margin-top: 15px;
-}
+
 strong {
   font-size: 50px;
 }
@@ -111,6 +106,22 @@ small {
 }
 
 .units a {
-  color: salmon;
+  color: white;
   font-family: "Roboto", sans-serif;
+  text-decoration: none;
+}
+.units a:hover {
+  color: salmon;
+}
+.weather-forecast {
+  color: white;
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  margin: 40px 200px 40px 200px;
+  border: 1px solid salmon;
+  background: #8fa1a4;
+  border-radius: 5px;
+  padding-left: 80px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
