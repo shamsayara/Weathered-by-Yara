@@ -41,8 +41,6 @@ function formatHours(timestamp) {
 //Fetching temperatures and location
 
 function showTemp(response) {
-  console.log(response.data);
-
   let currentTemp = document.querySelector("#temp-now");
   currentTemp.innerHTML = Math.round(response.data.main.temp);
 
@@ -71,6 +69,7 @@ function showTemp(response) {
 }
 let apiKey = "d7ef075e23ceff7dd7b77b4367b2add8";
 let units = "metric";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${apiKey}&units=${units}`;
+let city = "London";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
 axios.get(apiUrl).then(showTemp);
