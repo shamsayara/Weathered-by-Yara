@@ -71,7 +71,7 @@ small {
 }
 
 .big-image {
-  height: 100vh;
+  height: 120vh;
   width: 100vw;
   display: block;
   margin: 0 auto;
@@ -115,7 +115,6 @@ small {
 }
 .weather-forecast {
   color: white;
-  position: absolute;
   font-family: "Roboto", sans-serif;
   margin: 40px 200px 40px 200px;
   border: 1px solid salmon;
